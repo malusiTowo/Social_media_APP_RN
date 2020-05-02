@@ -1,19 +1,22 @@
 import React from "react";
-import {
-  SafeAreaView,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  View
-} from "react-native";
-import { Button, Text } from "native-base";
-import { Ionicons } from "@expo/vector-icons";
+import { SafeAreaView, StyleSheet, TouchableOpacity, View } from "react-native";
+import { Text } from "native-base";
+import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import { StackNavigationProp } from "@react-navigation/stack";
 
+import { AuthStackParamList } from "../../navigation/ParamList/AuthStackParamList";
 import Theme from "../../Theme/Theme";
+import InputText from "../../components/InputText";
+import CustomButton from "../../components/CustomButton";
 
-interface Props {
-  name: string;
-}
+type AuthLoginEmailScreenNavigationProp = StackNavigationProp<
+  AuthStackParamList,
+  "AuthLoginEmail"
+>;
+
+type AuthLoginEmailProps = {
+  navigation: AuthLoginEmailScreenNavigationProp;
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -25,59 +28,23 @@ const styles = StyleSheet.create({
     display: "flex",
     marginTop: "10%"
   },
-  inputWrapper: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center"
-  },
   text: {
-    color: "black",
-    fontSize: 30,
+    ...Theme.typography.heading2,
     width: "100%",
-    textAlign: "center",
-    fontWeight: "800",
+    textAlign: "left",
     marginTop: "5%",
-    marginBottom: "10%"
-  },
-  input: {
-    borderRadius: 10,
-    borderColor: "#ccc",
-    borderWidth: 3,
-    width: "90%",
-    marginTop: 25,
-    height: 60,
-    fontSize: 18,
-    paddingLeft: 10,
-    color: "black"
+    marginLeft: "5%",
+    marginBottom: "5%"
   },
   backBtn: {
-    marginLeft: "10%"
+    marginLeft: "5%"
   },
-  nextBtn: {
-    backgroundColor: "black",
-    width: "90%",
-    borderRadius: 10,
-    height: 50
-  },
-  nextBtnText: {
-    color: "white",
-    fontSize: 20,
-    fontWeight: "bold",
-    width: "100%",
-    textAlign: "center"
-  },
-  loginBtnWrapper: {
-    alignItems: "center",
-    marginTop: 20
-  },
-  loginText: {
-    color: "black",
-    fontSize: 20,
-    fontWeight: "800"
+  inputSpacing: {
+    marginBottom: 15
   }
 });
-const Login = ({ navigation }) => {
+
+const Login: React.FC<AuthLoginEmailProps> = ({ navigation }) => {
   const goToCreateScreen = () => navigation.navigate("AuthCreate");
 
   return (
@@ -87,41 +54,132 @@ const Login = ({ navigation }) => {
           onPress={() => navigation.navigate("AuthLanding")}
           style={styles.backBtn}
         >
-          <Ionicons name="md-arrow-round-back" size={40} color="black" />
+          <Ionicons
+            name="md-arrow-round-back"
+            size={40}
+            color={Theme.colors.grey}
+          />
         </TouchableOpacity>
 
-        <Text style={styles.text}>Welcome back! Enter your credentials</Text>
+        <Text style={styles.text}>Login</Text>
 
-        <View style={styles.inputWrapper}>
-          <TextInput
-            placeholder="Your email"
-            style={styles.input}
-            textContentType="emailAddress"
-          />
-        </View>
-        <View style={styles.inputWrapper}>
-          <TextInput
-            placeholder="Your password"
-            style={styles.input}
-            secureTextEntry
-            textContentType="password"
-          />
-        </View>
-
-        <View style={[styles.inputWrapper, { marginTop: "10%" }]}>
-          <Button
-            // onPress={login}
-            style={styles.nextBtn}
+        <View
+          style={{
+            flexDirection: "column"
+          }}
+        >
+          <View style={styles.inputSpacing}>
+            <InputText
+              isPassword={false}
+              placeHolder="Your email"
+              inputType="emailAddress"
+              onChange={t => t}
+            />
+          </View>
+          <View style={styles.inputSpacing}>
+            <InputText
+              isPassword
+              placeHolder="Password"
+              inputType="emailAddress"
+              onChange={t => t}
+            />
+          </View>
+          <TouchableOpacity
+            style={{ alignItems: "flex-end", marginRight: "3%" }}
+            onPress={() => navigation.navigate("AuthForgotPassword")}
           >
-            <Text style={styles.nextBtnText}>Continue</Text>
-          </Button>
+            <Text
+              style={{ ...Theme.typography.subtext, color: Theme.colors.black }}
+            >
+              Forgot Password?
+            </Text>
+          </TouchableOpacity>
         </View>
+
+        <View style={{ marginTop: "7%" }}>
+          <CustomButton
+            backgroundColor={Theme.colors.accent}
+            textColor={Theme.colors.white}
+            borderColor={Theme.colors.accent}
+            borderWidth={2}
+            onClick={() => {}}
+            borderRadius={25}
+            height={50}
+            text="Log in"
+          />
+        </View>
+
+        <View
+          style={{
+            display: "flex",
+            alignItems: "center",
+            width: "100%",
+            marginTop: 15
+          }}
+        >
+          <Text style={{ ...Theme.typography.subtitle }}>
+            Or sign up with social account
+          </Text>
+        </View>
+
+        <View
+          style={{
+            flexDirection: "row",
+            width: "70%",
+            alignItems: "center",
+            marginLeft: "6%",
+            marginTop: "7%"
+          }}
+        >
+          <CustomButton
+            backgroundColor={Theme.colors.white}
+            textColor={Theme.colors.grey}
+            borderColor={Theme.colors.grey}
+            borderWidth={2}
+            onClick={() => {}}
+            icon={
+              <FontAwesome
+                size={20}
+                color={Theme.colors.grey}
+                name="facebook"
+              />
+            }
+            borderRadius={25}
+            height={50}
+            text="Facebook"
+          />
+
+          <CustomButton
+            backgroundColor={Theme.colors.white}
+            textColor={Theme.colors.grey}
+            borderColor={Theme.colors.grey}
+            borderWidth={2}
+            onClick={() => {}}
+            icon={
+              <FontAwesome size={20} color={Theme.colors.grey} name="twitter" />
+            }
+            borderRadius={25}
+            height={50}
+            text="Twitter"
+          />
+        </View>
+
         <TouchableOpacity
           onPress={goToCreateScreen}
-          style={styles.loginBtnWrapper}
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "flex-end",
+            width: "100%",
+            flex: 1
+          }}
         >
-          <Text style={styles.loginText}>
-            Don't have an account yet! Sign up
+          <Text style={{ ...Theme.typography.subtext }}>
+            Don't have an account?{" "}
+          </Text>
+          <Text style={{ ...Theme.typography.subtitle, fontWeight: "700" }}>
+            Sign up
           </Text>
         </TouchableOpacity>
       </View>

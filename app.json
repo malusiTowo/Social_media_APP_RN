@@ -1,6 +1,6 @@
 {
   "expo": {
-    "name": "HelloWorld",
+    "name": "Social Media Behance",
     "slug": "social_media_RN",
     "platforms": ["ios", "android", "web"],
     "version": "1.0.0",

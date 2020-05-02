@@ -1,125 +1,109 @@
 import React from "react";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import {
-  AntDesign,
-  EvilIcons,
-  Ionicons,
-  MaterialIcons
-} from "@expo/vector-icons";
-import { Text, View } from "native-base";
-import { TouchableOpacity } from "react-native-gesture-handler";
-import Home from "../screens/Home";
-import IconBadge from "../components/IconBadge";
+import { createStackNavigator } from "@react-navigation/stack";
+import { Feather, FontAwesome, MaterialIcons } from "@expo/vector-icons";
+
+import TabButton from "../components/Navigation/TabButton";
+import Theme from "../Theme/Theme";
 import { AppStackParamList } from "./ParamList/AppStackParamList";
+import { TabsParamList } from "./ParamList/TabsParamsList";
+import Feed from "./FeedCardStack";
+import Messages from "../screens/Messages/Messages";
+import Profile from "../screens/profile/Profile";
+import FeedComments from "../screens/Feed/FeedComments";
+import CreatePost from "../screens/Feed/CreatePost";
+import CreatePostCamera from "../screens/Feed/CreatePostCamera";
 
 interface AppTabsProps {}
 
-const Tabs = createBottomTabNavigator<AppStackParamList>();
+const Tabs = createBottomTabNavigator<TabsParamList>();
 
-const AppTabs = () => {
+const AppStack = createStackNavigator<AppStackParamList>();
+
+const AppTabs: React.FC<AppTabsProps> = () => {
   return (
     <Tabs.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ focused, color, size }) => {
-          let iconName;
+        tabBarIcon: ({ focused }) => {
+          let tab: JSX.Element = <></>;
 
-          if (route.name === "Home") {
-            iconName = focused
-              ? "ios-information-circle"
-              : "ios-information-circle-outline";
-          } else if (route.name === "Search") {
-            iconName = focused ? "ios-list-box" : "ios-list";
+          if (route.name === "Feed") {
+            tab = (
+              <TabButton
+                backgroundColor={Theme.colors.grey}
+                textColor={Theme.colors.accent}
+                text="Feeds"
+                badgeCount={3}
+                focused={focused}
+                icon={
+                  <FontAwesome
+                    name="bolt"
+                    color={focused ? Theme.colors.accent : Theme.colors.grey}
+                    size={20}
+                  />
+                }
+              />
+            );
+          } else if (route.name === "Messages") {
+            tab = (
+              <TabButton
+                backgroundColor={Theme.colors.grey}
+                textColor={Theme.colors.accent}
+                text="Messages"
+                badgeCount={3}
+                focused={focused}
+                icon={
+                  <Feather
+                    name="message-circle"
+                    color={focused ? Theme.colors.accent : Theme.colors.grey}
+                    size={20}
+                  />
+                }
+              />
+            );
+          } else if (route.name === "Profile") {
+            tab = (
+              <TabButton
+                backgroundColor={Theme.colors.grey}
+                textColor={Theme.colors.accent}
+                text="Profile"
+                badgeCount={3}
+                focused={focused}
+                icon={
+                  <MaterialIcons
+                    name="person-outline"
+                    color={focused ? Theme.colors.accent : Theme.colors.grey}
+                    size={20}
+                  />
+                }
+              />
+            );
           }
-
-          // You can return any component that you like here!
-          return <Ionicons name={iconName} size={size} color={color} />;
+          return tab;
         }
       })}
       tabBarOptions={{
         activeTintColor: "tomato",
-        inactiveTintColor: "gray"
+        inactiveTintColor: "gray",
+        showLabel: false
       }}
     >
-      <Tabs.Screen name="Home" component={Home} />
+      <Tabs.Screen name="Feed" component={Feed} />
+      <Tabs.Screen name="Messages" component={Messages} />
+      <Tabs.Screen name="Profile" component={Profile} />
     </Tabs.Navigator>
   );
 };
 
-// const AppTabs: React.FC<AppTabsProps> = () => {
-//   return (
-//     <Tabs.Navigator
-//       screenOptions={({ route }) => ({
-//         tabBarIcon: ({ focused, color, size }) => {
-//           if (route.name === "Home") {
-//             const icon = focused ? (
-//               <TouchableOpacity
-//                 style={{
-//                   backgroundColor: "black",
-//                   borderRadius: 20,
-//                   height: 40,
-//                   width: 40,
-//                   alignItems: "center",
-//                   justifyContent: "center",
-//                 }}
-//                               <AntDesign
-//                                   name="home"
-//                                   size={size}
-//                                   color="#fff"
-//                                 />
-//               </TouchableOpacity>
-//             ) : (
-//                           <AntDesign
-//                                   name="home"
-//                                   size={size}
-//                                   color={color}
-//                                 />
-//             );
-//             return icon;
-//           }
-//           if (route.name === "Search") {
-//             return <EvilIcons name="search" size={size} color={color} />;
-//           }
-//           if (route.name === "Notifications") {
-//             return (
-//               <Ionicons
-//                 name="ios-notifications-outline"
-//                               size={size}
-//                 color={color}
-//               />
-//             );
-//           }
-//           if (route.name === "Chat") {
-//             return (
-//               <IconBadge
-//                 name="ios-chatbubbles"
-//                 size={size}
-//                 color={color}
-//                 badgeCount={3}
-//               />
-//             );
-//             // return <Ionicons name={"ios-chatbubbles"} size={size} color={color} />;
-//           }
-//           if (route.name === "Profile") {
-//             return (
-//             <MaterialIcons
-//                               name="person-outline"
-//                               size={size}
-//                               color={color}
-//                             />
-//             );
-//           }
-//         },
-//       })}
-//       tabBarOptions={{
-//         activeTintColor: "tomato",
-//         inactiveTintColor: "#ccc",
-//         // inactiveBackgroundColor: "#000",
-//         showLabel: false,
-//       }}
-//     >
-//       <Tabs.Screen name="Home" component={Home} />
-//     </Tabs.Navigator>
-//   );
-// };
+const App = () => {
+  return (
+    <AppStack.Navigator headerMode="none">
+      <AppStack.Screen name="FeedTabs" component={AppTabs} />
+      <AppStack.Screen name="FeedComments" component={FeedComments} />
+      <AppStack.Screen name="CreatePost" component={CreatePost} />
+      <AppStack.Screen name="CreatePostCamera" component={CreatePostCamera} />
+    </AppStack.Navigator>
+  );
+};
 
-export default AppTabs;
+export default App;

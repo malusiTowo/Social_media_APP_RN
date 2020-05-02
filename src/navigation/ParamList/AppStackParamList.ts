@@ -1,7 +1,8 @@
 export type AppStackParamList = {
-  Home: undefined;
-  Search: undefined;
-  Notifications: undefined;
-  Chat: undefined;
-  Profile: undefined;
+  FeedTabs: undefined;
+  FeedComments: undefined;
+  CreatePost: undefined;
+  CreatePostCamera: undefined;
+  SendMessage: undefined;
+  LivePost: undefined;
 };

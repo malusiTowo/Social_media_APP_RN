@@ -56,68 +56,79 @@ const Theme = {
     orange: "#F5A98F",
     yellow: "#EEDEAA",
     white: "#fff",
-    facebook: "#3B5998"
+    facebook: "#3B5998",
+    black: "#000",
+    grey: "#ccc",
+    lightGrey: "#f0f2f0"
   },
   typography: {}
 };
 
 Theme.typography = {
   heading1: {
-    fontSize: 24,
-    color: Theme.colors.blue,
-    fontFamily: "Poppins-Bold"
+    fontSize: 35,
+    color: Theme.colors.black,
+    fontWeight: "800"
+    // fontFamily: "Poppins-Bold"
   },
 
   heading2: {
-    fontSize: 18,
-    color: Theme.colors.blue,
-    fontFamily: "Poppins-Bold"
+    fontSize: 28,
+    fontWeight: "800",
+    color: Theme.colors.black
+    // fontFamily: "Poppins-Bold",
   },
 
   heading3: {
-    fontSize: 16,
-    color: Theme.colors.blue,
-    fontFamily: "Roboto-Regular"
+    fontSize: 20,
+    color: Theme.colors.black
+    // fontFamily: "Roboto-Regular",
   },
 
   heading4: {
     fontSize: 14,
-    color: Theme.colors.blue,
-    fontFamily: "Roboto-Bold"
+    color: Theme.colors.black
+    // fontFamily: "Roboto-Bold",
   },
 
   body: {
     fontSize: 14,
-    color: Theme.colors.blue,
-    fontFamily: "Roboto-Regular"
+    color: Theme.colors.black
+    // fontFamily: "Roboto-Regular",
   },
 
   subtitle: {
-    fontSize: 12,
-    color: Theme.colors.blue,
-    fontFamily: "Roboto-Bold"
+    fontSize: 15,
+    color: Theme.colors.black,
+    fontWeight: "500"
+    // fontFamily: "Roboto-Bold",
   },
 
   subtext: {
-    fontSize: 12,
+    fontSize: 15,
     lineHeight: 16,
-    color: Theme.colors.blue,
-    fontFamily: "Roboto-Regular"
+    color: Theme.colors.grey
+    // fontFamily: "Roboto-Regular",
   },
 
   subtext2: {
     fontSize: 12,
     lineHeight: 16,
     color: Theme.colors.blue,
-    opacity: 0.5,
-    fontFamily: "Roboto-Regular"
+    opacity: 0.5
+    // fontFamily: "Roboto-Regular"
   },
   underlined: {
     fontSize: 12,
     lineHeight: 16,
     color: Theme.colors.blue,
-    textDecorationLine: "underline",
-    fontFamily: "Roboto-Regular"
+    textDecorationLine: "underline"
+    // fontFamily: "Roboto-Regular"
+  },
+  input: {
+    fontSize: 18,
+    color: Theme.colors.black
+    // fontFamily: "Roboto-Bold",
   }
 };
 

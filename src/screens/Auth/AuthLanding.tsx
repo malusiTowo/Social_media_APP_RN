@@ -1,7 +1,5 @@
-/* eslint-disable global-require */
 import React, { useEffect, useState } from "react";
 import {
-  Image,
   SafeAreaView,
   StatusBar,
   StyleSheet,
@@ -73,15 +71,17 @@ const styles = StyleSheet.create({
   }
 });
 
+const CUSTOM_FONTS = {
+  Roboto: require("../../../node_modules/native-base/Fonts/Roboto.ttf"),
+  RobotoMedium: require("../../../node_modules/native-base/Fonts/Roboto_medium.ttf")
+};
+
 const AuthLanding = ({ navigation }) => {
   const [isReady, setIsReady] = useState(false);
 
   const loadFonts = async () => {
     try {
-      await Font.loadAsync({
-        Roboto: require("../../../node_modules/native-base/Fonts/Roboto.ttf"),
-        Roboto_medium: require("../../../node_modules/native-base/Fonts/Roboto_medium.ttf")
-      });
+      await Font.loadAsync(CUSTOM_FONTS);
       setIsReady(true);
     } catch (err) {
       console.log(err);

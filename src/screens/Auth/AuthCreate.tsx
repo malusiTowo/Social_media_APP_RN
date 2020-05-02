@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-import {
-  SafeAreaView,
-  StyleSheet,
-  TextInput,
-  TouchableOpacity,
-  View
-} from "react-native";
+import { SafeAreaView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
-import { Button, Text } from "native-base";
-import { Ionicons } from "@expo/vector-icons";
+import { Text } from "native-base";
+import { FontAwesome, Ionicons } from "@expo/vector-icons";
+
 import { AuthStackParamList } from "../../navigation/ParamList/AuthStackParamList";
+import Theme from "../../Theme/Theme";
+import InputText from "../../components/InputText";
+import CustomButton from "../../components/CustomButton";
 
 type AuthCreateScreenNavigationProp = StackNavigationProp<
   AuthStackParamList,
@@ -28,65 +26,21 @@ const styles = StyleSheet.create({
   emailWrapper: {
     height: "100%",
     display: "flex",
-    marginTop: "10%"
-  },
-  inputWrapper: {
-    width: "100%",
-    display: "flex",
-    flexDirection: "row",
-    justifyContent: "center"
+    marginTop: "5%"
   },
   text: {
-    color: "black",
-    fontSize: 30,
+    ...Theme.typography.heading2,
     width: "100%",
-    textAlign: "center",
-    fontWeight: "800",
+    textAlign: "left",
     marginTop: "5%",
-    marginBottom: "10%"
-  },
-  input: {
-    borderRadius: 10,
-    borderColor: "#ccc",
-    borderWidth: 3,
-    width: "90%",
-    marginTop: 25,
-    height: 60,
-    fontSize: 18,
-    paddingLeft: 10,
-    color: "black"
+    marginLeft: "5%",
+    marginBottom: "5%"
   },
   backBtn: {
-    marginLeft: "10%"
+    marginLeft: "5%"
   },
-  nextBtn: {
-    backgroundColor: "black",
-    width: "90%",
-    borderRadius: 10,
-    height: 50
-  },
-  nextBtnText: {
-    color: "white",
-    fontSize: 20,
-    fontWeight: "bold",
-    width: "100%",
-    textAlign: "center"
-  },
-  loginBtnWrapper: {
-    alignItems: "center",
-    marginTop: 20
-  },
-  loginText: {
-    color: "black",
-    fontSize: 20,
-    fontWeight: "800"
-  },
-  forgotPwd: {
-    color: "black",
-    width: "100%",
-    textAlign: "center",
-    fontWeight: "700",
-    height: 30
+  inputSpacing: {
+    marginBottom: 15
   }
 });
 
@@ -105,39 +59,168 @@ const AuthCreate: React.FC<AuthCreateProps> = ({ navigation }) => {
           onPress={() => navigation.navigate("AuthLanding")}
           style={styles.backBtn}
         >
-          <Ionicons name="md-arrow-round-back" size={40} color="black" />
+          <Ionicons
+            name="md-arrow-round-back"
+            size={40}
+            color={Theme.colors.grey}
+          />
         </TouchableOpacity>
 
-        <Text style={styles.text}>Welcome to the IFTTT family!</Text>
+        <Text style={styles.text}>Sign up</Text>
 
-        <View style={styles.inputWrapper}>
-          <TextInput
-            placeholder="Your email"
-            textContentType="emailAddress"
-            style={styles.input}
-            onChangeText={txt => setEmail(txt.trim())}
-          />
-        </View>
-        <View style={styles.inputWrapper}>
-          <TextInput
-            placeholder="Your password"
-            style={styles.input}
-            textContentType="newPassword"
-            secureTextEntry
-            onChangeText={txt => setPassword(txt.trim())}
-          />
-        </View>
+        <View
+          style={{
+            flexDirection: "column"
+          }}
+        >
+          <View style={styles.inputSpacing}>
+            <InputText
+              isPassword={false}
+              placeHolder="Your email"
+              inputType="emailAddress"
+              onChange={t => t}
+            />
+          </View>
 
-        <View style={[styles.inputWrapper, { marginTop: "10%" }]}>
-          <Button
-            style={styles.nextBtn}
-            disabled={!(email.trim().length > 0 && password.trim().length > 0)}
+          <View
+            style={{
+              display: "flex",
+              flexDirection: "row",
+              marginBottom: 15
+            }}
           >
-            <Text style={styles.nextBtnText}>Sign up!</Text>
-          </Button>
+            <InputText
+              isPassword={false}
+              placeHolder="First Name"
+              inputType="name"
+              onChange={t => t}
+            />
+            <InputText
+              isPassword={false}
+              placeHolder="Last Name"
+              inputType="familyName"
+              onChange={t => t}
+            />
+          </View>
+
+          <View style={styles.inputSpacing}>
+            <InputText
+              isPassword={false}
+              placeHolder="Phone"
+              inputType="telephoneNumber"
+              onChange={t => t}
+            />
+          </View>
+
+          <InputText
+            isPassword
+            inputType="newPassword"
+            placeHolder="Password"
+            onChange={t => t}
+          />
         </View>
-        <TouchableOpacity onPress={goToLogin} style={styles.loginBtnWrapper}>
-          <Text style={styles.loginText}>Already have an account? Log in</Text>
+
+        <View
+          style={{
+            display: "flex",
+            alignItems: "center",
+            width: "100%",
+            marginTop: 14
+          }}
+        >
+          <Text style={{ ...Theme.typography.subtext }}>
+            By signing up you agree to our Terms of Use {"\n\t\t\t"} and Privacy
+            Policy
+          </Text>
+        </View>
+
+        <View style={{ marginTop: "7%" }}>
+          <CustomButton
+            backgroundColor={Theme.colors.accent}
+            textColor={Theme.colors.white}
+            borderColor={Theme.colors.accent}
+            borderWidth={2}
+            onClick={() => {
+              navigation.navigate("VerifyEmail");
+            }}
+            borderRadius={25}
+            height={50}
+            text="Sign Up"
+          />
+        </View>
+
+        <View
+          style={{
+            display: "flex",
+            alignItems: "center",
+            width: "100%",
+            marginTop: 15
+          }}
+        >
+          <Text style={{ ...Theme.typography.subtitle }}>
+            Or sign up with social account
+          </Text>
+        </View>
+
+        <View
+          style={{
+            flexDirection: "row",
+            width: "70%",
+            alignItems: "center",
+            marginLeft: "6%",
+            marginTop: "7%"
+          }}
+        >
+          <CustomButton
+            backgroundColor={Theme.colors.white}
+            textColor={Theme.colors.grey}
+            borderColor={Theme.colors.grey}
+            borderWidth={2}
+            onClick={() => {}}
+            icon={
+              <FontAwesome
+                size={20}
+                color={Theme.colors.grey}
+                name="facebook"
+              />
+            }
+            borderRadius={25}
+            height={50}
+            text="Facebook"
+          />
+
+          <CustomButton
+            backgroundColor={Theme.colors.white}
+            textColor={Theme.colors.grey}
+            borderColor={Theme.colors.grey}
+            borderWidth={2}
+            onClick={() => {}}
+            icon={
+              <FontAwesome size={20} color={Theme.colors.grey} name="twitter" />
+            }
+            borderRadius={25}
+            height={50}
+            text="Twitter"
+          />
+        </View>
+
+        <TouchableOpacity
+          onPress={goToLogin}
+          style={{
+            display: "flex",
+            flexDirection: "row",
+            justifyContent: "center",
+            alignItems: "flex-end",
+            width: "100%",
+            flex: 1
+          }}
+        >
+          <Text style={{ ...Theme.typography.subtext }}>
+            Already have an account?{" "}
+          </Text>
+          <Text style={{ ...Theme.typography.subtitle, fontWeight: "700" }}>
+            Log in
+          </Text>
         </TouchableOpacity>
       </View>
     </SafeAreaView>
