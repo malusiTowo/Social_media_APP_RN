@@ -1,6 +1,13 @@
 import React from "react";
-import App from "./src/navigation/navigation";
+import { Provider } from "mobx-react";
 
-export default function Root() {
-  return <App />;
+import App from "./src/navigation/navigation";
+import Root from "./src/mobx/Root";
+
+export default function RootApp() {
+  return (
+    <Provider root={Root}>
+      <App />
+    </Provider>
+  );
 }

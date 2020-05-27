@@ -2,20 +2,23 @@ import React, { useEffect, useState } from "react";
 import { NavigationContainer } from "@react-navigation/native";
 import { View } from "native-base";
 import * as Font from "expo-font";
-
+import { inject, observer } from "mobx-react";
 import { ActivityIndicator } from "react-native";
-import { Feather } from "@expo/vector-icons";
+
 import AppStack from "./AppStack";
 import AuthStack from "./AuthStack";
+import Root from "../mobx/Root";
 
 const CUSTOM_FONTS = {
   Roboto: require("../../node_modules/native-base/Fonts/Roboto.ttf"),
   RobotoMedium: require("../../node_modules/native-base/Fonts/Roboto_medium.ttf")
 };
 
-const App = () => {
+interface AppProps {
+  root: typeof Root;
+}
+const App: React.FC<AppProps> = ({ root }) => {
   // ! check if user logged in
-  const [user, setUser] = useState(true);
   const [isLoading, setIsLoading] = useState(true);
 
   const loadFonts = async () => {
@@ -41,9 +44,9 @@ const App = () => {
 
   return (
     <NavigationContainer>
-      {user ? <AppStack /> : <AuthStack />}
+      {root.isLoggedIn ? <AppStack /> : <AuthStack />}
     </NavigationContainer>
   );
 };
 
-export default App;
+export default inject("root")(observer(App));

@@ -1,5 +1,5 @@
 import React from "react";
-import { StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import { StyleSheet, Text, View } from "react-native";
 
 interface TabButtonProps {
   icon: JSX.Element;
@@ -19,11 +19,9 @@ const styles = StyleSheet.create({
 
 const TabButton: React.FC<TabButtonProps> = ({
   icon,
-  badgeCount,
   focused,
   textColor,
-  text,
-  backgroundColor
+  text
 }) => {
   return (
     <View style={styles.container}>

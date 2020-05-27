@@ -2,8 +2,6 @@ import React from "react";
 import { StyleSheet, Text, View } from "react-native";
 import { Button } from "native-base";
 
-import Theme from "../Theme/Theme";
-
 const styles = StyleSheet.create({
   inputWrapper: {
     display: "flex",

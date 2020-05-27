@@ -1,6 +1,5 @@
 import React, { useRef, useState } from "react";
 import { StyleSheet, TextInput, View } from "react-native";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 interface VerifyInputProps {
   onChange: (val: number) => void;

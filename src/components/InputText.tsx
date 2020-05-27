@@ -29,18 +29,13 @@ const styles = StyleSheet.create({
   }
 });
 
-const InputText: React.FC<Props> = ({
-  onChange,
-  placeHolder,
-  isPassword,
-  inputType
-}) => {
+const InputText: React.FC<Props> = ({ onChange, placeHolder, isPassword }) => {
   return (
     <View style={styles.inputWrapper}>
       <TextInput
         placeholder={placeHolder}
         style={styles.input}
-        textContentType={inputType}
+        // textContentType={inputType}
         secureTextEntry={isPassword}
         onChangeText={txt => onChange(txt.trim())}
       />

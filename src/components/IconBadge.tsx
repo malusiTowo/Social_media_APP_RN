@@ -8,6 +8,7 @@ interface IconWithBadgeProps {
   color: string;
   size: number;
 }
+
 const IconWithBadge: React.FC<IconWithBadgeProps> = ({
   name,
   badgeCount,

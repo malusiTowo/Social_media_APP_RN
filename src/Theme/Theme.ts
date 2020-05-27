@@ -3,6 +3,17 @@ import { Platform } from "react-native";
 // const { width: SCREEN_WIDTH } = Dimensions.get("window");
 
 // const scale = SCREEN_WIDTH / 320;
+const colors = {
+  accent: "#EE5859",
+  blue: "#252E69",
+  orange: "#F5A98F",
+  yellow: "#EEDEAA",
+  white: "#fff",
+  facebook: "#3B5998",
+  black: "#000",
+  grey: "#ccc",
+  lightGrey: "#f0f2f0"
+};
 
 const Theme = {
   font: {
@@ -50,85 +61,73 @@ const Theme = {
       paddingTop: Platform.OS === "ios" ? "12@vs" : 0
     }
   },
-  colors: {
-    accent: "#EE5859",
-    blue: "#252E69",
-    orange: "#F5A98F",
-    yellow: "#EEDEAA",
-    white: "#fff",
-    facebook: "#3B5998",
-    black: "#000",
-    grey: "#ccc",
-    lightGrey: "#f0f2f0"
-  },
-  typography: {}
-};
+  colors,
+  typography: {
+    heading1: {
+      fontSize: 35,
+      color: colors.black,
+      fontWeight: "800"
+      // fontFamily: "Poppins-Bold"
+    },
 
-Theme.typography = {
-  heading1: {
-    fontSize: 35,
-    color: Theme.colors.black,
-    fontWeight: "800"
-    // fontFamily: "Poppins-Bold"
-  },
+    heading2: {
+      fontSize: 28,
+      fontWeight: "800",
+      color: colors.black
+      // fontFamily: "Poppins-Bold",
+    },
 
-  heading2: {
-    fontSize: 28,
-    fontWeight: "800",
-    color: Theme.colors.black
-    // fontFamily: "Poppins-Bold",
-  },
+    heading3: {
+      fontSize: 20,
+      color: colors.black
+      // fontFamily: "Roboto-Regular",
+    },
 
-  heading3: {
-    fontSize: 20,
-    color: Theme.colors.black
-    // fontFamily: "Roboto-Regular",
-  },
+    heading4: {
+      fontSize: 14,
+      color: colors.black
+      // fontFamily: "Roboto-Bold",
+    },
 
-  heading4: {
-    fontSize: 14,
-    color: Theme.colors.black
-    // fontFamily: "Roboto-Bold",
-  },
+    body: {
+      fontSize: 14,
+      color: colors.black
+      // fontFamily: "Roboto-Regular",
+    },
 
-  body: {
-    fontSize: 14,
-    color: Theme.colors.black
-    // fontFamily: "Roboto-Regular",
-  },
+    subtitle: {
+      fontSize: 15,
+      color: colors.black,
+      fontWeight: "500"
+      // fontFamily: "Roboto-Bold",
+    },
 
-  subtitle: {
-    fontSize: 15,
-    color: Theme.colors.black,
-    fontWeight: "500"
-    // fontFamily: "Roboto-Bold",
-  },
+    subtext: {
+      fontSize: 15,
+      lineHeight: 16,
+      color: colors.grey
+      // fontFamily: "Roboto-Regular",
+    },
 
-  subtext: {
-    fontSize: 15,
-    lineHeight: 16,
-    color: Theme.colors.grey
-    // fontFamily: "Roboto-Regular",
-  },
-
-  subtext2: {
-    fontSize: 12,
-    lineHeight: 16,
-    color: Theme.colors.blue,
-    opacity: 0.5
-    // fontFamily: "Roboto-Regular"
-  },
-  underlined: {
-    fontSize: 12,
-    lineHeight: 16,
-    color: Theme.colors.blue,
-    textDecorationLine: "underline"
-    // fontFamily: "Roboto-Regular"
-  },
-  input: {
-    fontSize: 18,
-    color: Theme.colors.black
-    // fontFamily: "Roboto-Bold",
+    subtext2: {
+      fontSize: 12,
+      lineHeight: 16,
+      color: colors.blue,
+      opacity: 0.5
+      // fontFamily: "Roboto-Regular"
+    },
+    underlined: {
+      fontSize: 12,
+      lineHeight: 16,
+      color: colors.blue,
+      textDecorationLine: "underline"
+      // fontFamily: "Roboto-Regular"
+    },
+    input: {
+      fontSize: 18,
+      color: colors.black
+      // fontFamily: "Roboto-Bold",
+    }
   }
 };
 

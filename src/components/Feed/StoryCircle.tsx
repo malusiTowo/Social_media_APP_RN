@@ -34,12 +34,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const StoryCircle: React.FC<StoryCircleProps> = ({
-  imageUrl,
-  onPress,
-  isLive,
-  isOnline
-}) => {
+const StoryCircle: React.FC<StoryCircleProps> = ({ imageUrl, onPress }) => {
   return (
     <TouchableOpacity onPress={onPress} style={styles.container}>
       <View

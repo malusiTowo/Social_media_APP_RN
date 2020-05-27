@@ -13,6 +13,9 @@ import Profile from "../screens/profile/Profile";
 import FeedComments from "../screens/Feed/FeedComments";
 import CreatePost from "../screens/Feed/CreatePost";
 import CreatePostCamera from "../screens/Feed/CreatePostCamera";
+import FindFriends from "../screens/FindFriends";
+import StoryDetails from "../screens/StoryDetails";
+import MessageConversation from "../screens/MessageConversation";
 
 interface AppTabsProps {}
 
@@ -102,6 +105,12 @@ const App = () => {
       <AppStack.Screen name="FeedComments" component={FeedComments} />
       <AppStack.Screen name="CreatePost" component={CreatePost} />
       <AppStack.Screen name="CreatePostCamera" component={CreatePostCamera} />
+      <AppStack.Screen
+        name="MessageConversation"
+        component={MessageConversation}
+      />
+      <AppStack.Screen name="FindFriends" component={FindFriends} />
+      <AppStack.Screen name="StoryDetails" component={StoryDetails} />
     </AppStack.Navigator>
   );
 };

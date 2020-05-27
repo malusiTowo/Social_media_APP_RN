@@ -38,7 +38,7 @@ const FeedComment: React.FC<FeedCommentProps> = ({
         <Text>{comment}</Text>
         <View style={{ flexDirection: "row", marginTop: 5 }}>
           <TouchableOpacity>
-            <Text style={{ ...Theme.typography.subtext, fontSize: 12 }}>
+            <Text style={{ ...Theme.typography.subtitle, fontSize: 12 }}>
               Like
             </Text>
           </TouchableOpacity>

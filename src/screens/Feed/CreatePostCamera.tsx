@@ -3,9 +3,21 @@ import { Text, TouchableOpacity, View } from "react-native";
 import { Camera } from "expo-camera";
 import { Entypo, Feather, FontAwesome } from "@expo/vector-icons";
 
+const useCameraToggle = (initialState: any) => {
+  const [state, setState] = useState(initialState);
+
+  const toggle = () =>
+    setState(
+      state === Camera.Constants.Type.back
+        ? Camera.Constants.Type.front
+        : Camera.Constants.Type.back
+    );
+  return [state, toggle];
+};
+
 export default function CreatePostCamera({ navigation }) {
   const [hasPermission, setHasPermission] = useState(false);
-  const [type, setType] = useState(Camera.Constants.Type.back);
+  const [type, toggleCameraType] = useCameraToggle(Camera.Constants.Type.back);
   const [flash, setFlash] = useState(Camera.Constants.FlashMode.off);
   const cameraRef = useRef<Camera>(null);
 
@@ -23,13 +35,6 @@ export default function CreatePostCamera({ navigation }) {
     return <Text>No access to camera</Text>;
   }
 
-  const toggleCameraType = () => {
-    setType(
-      type === Camera.Constants.Type.back
-        ? Camera.Constants.Type.front
-        : Camera.Constants.Type.back
-    );
-  };
   const isFlashEnabled = () => flash === Camera.Constants.FlashMode.on;
 
   const toggleFlash = () => {

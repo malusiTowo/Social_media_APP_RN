@@ -5,4 +5,7 @@ export type AppStackParamList = {
   CreatePostCamera: undefined;
   SendMessage: undefined;
   LivePost: undefined;
+  StoryDetails: undefined;
+  FindFriends: undefined;
+  MessageConversation: undefined;
 };

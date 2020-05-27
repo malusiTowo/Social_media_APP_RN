@@ -77,24 +77,7 @@ const CUSTOM_FONTS = {
 };
 
 const AuthLanding = ({ navigation }) => {
-  const [isReady, setIsReady] = useState(false);
-
-  const loadFonts = async () => {
-    try {
-      await Font.loadAsync(CUSTOM_FONTS);
-      setIsReady(true);
-    } catch (err) {
-      console.log(err);
-    }
-  };
-
-  useEffect(() => {
-    loadFonts();
-  }, []);
-
-  return !isReady ? (
-    <Spinner color="black" />
-  ) : (
+  return (
     <SafeAreaView style={styles.container}>
       <StatusBar barStyle="dark-content" backgroundColor="#ecf0f1" />
       {/* <Image
@@ -103,7 +86,7 @@ const AuthLanding = ({ navigation }) => {
       /> */}
 
       <View style={styles.loginBox}>
-        <View style={styles.centerTextWrapper}>
+        {/* <View style={styles.centerTextWrapper}>
           <Text style={styles.centerText}>Sign in with</Text>
         </View>
 
@@ -114,7 +97,7 @@ const AuthLanding = ({ navigation }) => {
           <Button style={[styles.btn, { backgroundColor: "#3b5998" }]}>
             <Text style={styles.btnText}>Facebook</Text>
           </Button>
-        </View>
+        </View> */}
 
         <TouchableOpacity
           onPress={() => navigation.navigate("AuthCreate")}

@@ -11,7 +11,6 @@ import { Feather, FontAwesome } from "@expo/vector-icons";
 
 import { useNavigation } from "@react-navigation/native";
 import { TouchableWithoutFeedback } from "react-native-gesture-handler";
-import Theme from "../../Theme/Theme";
 
 const { width } = Dimensions.get("screen");
 
@@ -63,7 +62,7 @@ const FeedCard: React.FC<FeedCardProps> = ({
           />
           <View style={{ marginHorizontal: 10 }}>
             <Text style={styles.profileName}>{userName}</Text>
-            <Text style={{ color: "#d0d6d0" }}>30 mins ago</Text>
+            <Text style={{ color: "#d0d6d0" }}>{postTime}</Text>
           </View>
         </View>
 
@@ -92,16 +91,7 @@ const FeedCard: React.FC<FeedCardProps> = ({
         style={{
           justifyContent: "center",
           alignItems: "center",
-          marginTop: 10,
-          shadowColor: "#000",
-          shadowOffset: {
-            width: 0,
-            height: 3
-          },
-          shadowOpacity: 0.29,
-          shadowRadius: 4.65,
-
-          elevation: 7
+          marginTop: 10
         }}
         onPress={() => navigation.navigate("FeedCardDetails")}
       >

@@ -28,7 +28,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#fff"
   },
   headerWrapper: {
-    display: "flex",
     flexDirection: "row",
     justifyContent: "center",
     alignItems: "center",
@@ -54,13 +53,15 @@ const Home: React.FC<HomeProps> = ({ navigation }) => {
         <View
           style={{
             flex: 1,
-            flexDirection: "row"
+            flexDirection: "row",
+            justifyContent: "flex-start"
           }}
         >
           <Text style={styles.headerText}>Feeds</Text>
         </View>
         <View
           style={{
+            flex: 0.3,
             flexDirection: "row",
             justifyContent: "flex-end",
             paddingRight: 15
@@ -77,7 +78,7 @@ const Home: React.FC<HomeProps> = ({ navigation }) => {
           marginTop: 20
         }}
       >
-        <View style={{ marginVertical: 20, marginHorizontal: 10 }}>
+        <View style={{ marginVertical: 20 }}>
           <ScrollView showsVerticalScrollIndicator={false}>
             <View>
               <ScrollView
@@ -98,7 +99,11 @@ const Home: React.FC<HomeProps> = ({ navigation }) => {
                       }
                       isLive={false}
                       isOnline
-                      onPress={() => true}
+                      onPress={
+                        i === 1
+                          ? () => navigation.navigate("CreatePostCamera")
+                          : () => navigation.navigate("StoryDetails")
+                      }
                     />
                   </View>
                 ))}
@@ -108,7 +113,8 @@ const Home: React.FC<HomeProps> = ({ navigation }) => {
               <View
                 key={i}
                 style={{
-                  marginVertical: 10
+                  marginVertical: 10,
+                  marginHorizontal: 10
                 }}
               >
                 <FeedCard

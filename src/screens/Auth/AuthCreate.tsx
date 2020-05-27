@@ -1,9 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
 import { SafeAreaView, StyleSheet, TouchableOpacity, View } from "react-native";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { Text } from "native-base";
 import { FontAwesome, Ionicons } from "@expo/vector-icons";
+import { inject } from "mobx-react";
 
+import Root from "../../mobx/Root";
 import { AuthStackParamList } from "../../navigation/ParamList/AuthStackParamList";
 import Theme from "../../Theme/Theme";
 import InputText from "../../components/InputText";
@@ -16,6 +18,7 @@ type AuthCreateScreenNavigationProp = StackNavigationProp<
 
 type AuthCreateProps = {
   navigation: AuthCreateScreenNavigationProp;
+  root: typeof Root;
 };
 
 const styles = StyleSheet.create({
@@ -29,7 +32,9 @@ const styles = StyleSheet.create({
     marginTop: "5%"
   },
   text: {
-    ...Theme.typography.heading2,
+    fontSize: 28,
+    fontWeight: "800",
+    color: Theme.colors.black,
     width: "100%",
     textAlign: "left",
     marginTop: "5%",
@@ -44,12 +49,7 @@ const styles = StyleSheet.create({
   }
 });
 
-const AuthCreate: React.FC<AuthCreateProps> = ({ navigation }) => {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-  // const [message, setMessage] = useState('');
-  // const [isVisible, setIsVisible] = useState(false);
-
+const AuthCreate: React.FC<AuthCreateProps> = ({ navigation, root }) => {
   const goToLogin = () => navigation.navigate("AuthLoginEmail");
 
   return (
@@ -78,7 +78,7 @@ const AuthCreate: React.FC<AuthCreateProps> = ({ navigation }) => {
               isPassword={false}
               placeHolder="Your email"
               inputType="emailAddress"
-              onChange={t => t}
+              onChange={() => true}
             />
           </View>
 
@@ -93,13 +93,13 @@ const AuthCreate: React.FC<AuthCreateProps> = ({ navigation }) => {
               isPassword={false}
               placeHolder="First Name"
               inputType="name"
-              onChange={t => t}
+              onChange={() => true}
             />
             <InputText
               isPassword={false}
               placeHolder="Last Name"
               inputType="familyName"
-              onChange={t => t}
+              onChange={() => true}
             />
           </View>
 
@@ -108,7 +108,7 @@ const AuthCreate: React.FC<AuthCreateProps> = ({ navigation }) => {
               isPassword={false}
               placeHolder="Phone"
               inputType="telephoneNumber"
-              onChange={t => t}
+              onChange={() => true}
             />
           </View>
 
@@ -116,7 +116,7 @@ const AuthCreate: React.FC<AuthCreateProps> = ({ navigation }) => {
             isPassword
             inputType="newPassword"
             placeHolder="Password"
-            onChange={t => t}
+            onChange={() => true}
           />
         </View>
 
@@ -176,7 +176,7 @@ const AuthCreate: React.FC<AuthCreateProps> = ({ navigation }) => {
             textColor={Theme.colors.grey}
             borderColor={Theme.colors.grey}
             borderWidth={2}
-            onClick={() => {}}
+            onClick={() => root.user.setUser("Malusi")}
             icon={
               <FontAwesome
                 size={20}
@@ -194,7 +194,7 @@ const AuthCreate: React.FC<AuthCreateProps> = ({ navigation }) => {
             textColor={Theme.colors.grey}
             borderColor={Theme.colors.grey}
             borderWidth={2}
-            onClick={() => {}}
+            onClick={() => root.user.setUser("Malusi")}
             icon={
               <FontAwesome size={20} color={Theme.colors.grey} name="twitter" />
             }
@@ -227,4 +227,4 @@ const AuthCreate: React.FC<AuthCreateProps> = ({ navigation }) => {
   );
 };
 
-export default AuthCreate;
+export default inject("root")(AuthCreate);
