@@ -1,5 +1,8 @@
 <h1 align="center">Welcome to Social_media_APP_RN 👋</h1>
 <p>
+    <img src="/social-media-showcase.png" width="900" height="300" />
+</p>
+<p>
   <a href="https://github.com/malusiTowo/Social_media_APP_RN" target="_blank">
     <img alt="Documentation" src="https://img.shields.io/badge/documentation-yes-brightgreen.svg" />
   </a>
